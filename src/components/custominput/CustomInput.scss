@@ -1,0 +1,94 @@
+.custom-input {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 20vw;
+  margin: 0 15px;
+  padding: 10px 0;
+
+  input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: #f0f0f0;
+    padding: 20px 10px 10px 10px;
+    border-bottom: 2px solid #e0e0e0;
+    border-bottom-color: #8a8a8a63;
+    border-radius: 6px 6px 0px 0px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    
+    &::placeholder {
+      color: transparent;
+    }
+
+    &:focus {
+      border-bottom-color: #6200ea;
+      background: #d6d6d6;
+    }
+
+    &:focus + label,
+    &:not(:placeholder-shown) + label {
+      top: 17px;
+      font-size: 15px;
+      color: #6200ea;
+    }
+  }
+
+  label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #505050;
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+
+  .focused input {
+    border-bottom-color: #6200ea;
+  }
+
+  .clear-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #6200ea;
+
+    &:hover {
+      color: #3700b3;
+    }
+  }
+
+  .search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #757575;
+  }
+
+  .loading {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #757575;
+  }
+
+  &.disabled {
+    input {
+      background-color: #c2c2c2;
+      cursor: not-allowed;
+    }
+  }
+
+}
