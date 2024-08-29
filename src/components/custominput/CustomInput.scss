@@ -17,7 +17,7 @@
     border-radius: 6px 6px 0px 0px;
     font-size: 14px;
     transition: all 0.3s ease;
-    
+
     &::placeholder {
       color: transparent;
     }
@@ -27,8 +27,8 @@
       background: #d6d6d6;
     }
 
-    &:focus + label,
-    &:not(:placeholder-shown) + label {
+    &:focus+label,
+    &:not(:placeholder-shown)+label {
       top: 17px;
       font-size: 15px;
       color: #6200ea;
@@ -84,6 +84,14 @@
     color: #757575;
   }
 
+  &.loading {
+    cursor: wait;
+
+    input {
+      cursor: wait;
+    }
+  }
+
   &.disabled {
     input {
       background-color: #c2c2c2;
@@ -91,4 +99,29 @@
     }
   }
 
+  &.SMALL {
+    max-width: 15vw;
+
+    input {
+      font-size: 12px;
+      padding: 15px 8px 8px 8px;
+    }
+
+    label {
+      font-size: 14px;
+    }
+  }
+
+  &.MEDIUM {
+    max-width: 20vw;
+
+    input {
+      font-size: 14px;
+      padding: 20px 10px 10px 10px;
+    }
+
+    label {
+      font-size: 16px;
+    }
+  }
 }

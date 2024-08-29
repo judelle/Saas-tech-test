@@ -9,25 +9,27 @@ function CustomInput({
   isLoading,
   onInput,
   onChange,
-  error,
 }) {
   const [inputValue, setInputValue] = useState(value || "");
-  const [focused, setFocused] = useState(false);
 
   const handleInput = (e) => {
+    console.log("Input");
     setInputValue(e.target.value);
     if (onInput) onInput(e);
   };
 
   const handleChange = (e) => {
-    if (onChange) onChange(e);
+    console.log("blur"); // не совсем понимаю разницу в onChange и onInput полазил по форумам говорят что это в реакте одно и тоже
+    if (onChange) {
+      onChange(e);
+    }
   };
 
   return (
     <div
-      className={`custom-input ${size} ${focused ? "focused" : ""} ${
+      className={`custom-input ${size} ${
         disabled ? "disabled" : ""
-      } ${isLoading ? "loading" : ""} ${error ? "error" : ""}`}
+      } ${isLoading ? "loading" : ""}`}
     >
       <input
         type="text"
@@ -35,8 +37,6 @@ function CustomInput({
         disabled={disabled || isLoading}
         onInput={handleInput}
         onChange={handleChange}
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
         placeholder=" "
       />
       <label>{placeholder}</label>
@@ -47,7 +47,7 @@ function CustomInput({
             width="16"
             height="16"
             fill="currentColor"
-            class="bi bi-x-circle"
+            className="bi bi-x-circle"
             viewBox="0 0 16 16"
           >
             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
@@ -62,7 +62,7 @@ function CustomInput({
               width="16"
               height="16"
               fill="currentColor"
-              class="bi bi-search"
+              className="bi bi-search"
               viewBox="0 0 16 16"
             >
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />

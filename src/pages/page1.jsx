@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import BookModal from '../components/BookModal';
+import React, { useState, useEffect } from "react";
+import BookModal from "../components/BookModal";
 function Page1() {
   const [books, setBooks] = useState([]);
-  const [filterName, setFilterName] = useState('');
-  const [sortOrder, setSortOrder] = useState('desc');
+  const [filterName, setFilterName] = useState("");
+  const [sortOrder, setSortOrder] = useState("desc");
   const [selectedBook, setSelectedBook] = useState(null);
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const response = await fetch('https://anapioficeandfire.com/api/books');
+      const response = await fetch("https://anapioficeandfire.com/api/books");
       const data = await response.json();
       setBooks(data);
     };
@@ -18,11 +18,12 @@ function Page1() {
 
   const getYear = (dateString) => new Date(dateString).getFullYear();
 
-  const sortBooks = (books) => books.sort((a, b) => {
-    const yearA = getYear(a.released);
-    const yearB = getYear(b.released);
-    return sortOrder === 'desc' ? yearB - yearA : yearA - yearB;
-  });
+  const sortBooks = (books) =>
+    books.sort((a, b) => {
+      const yearA = getYear(a.released);
+      const yearB = getYear(b.released);
+      return sortOrder === "desc" ? yearB - yearA : yearA - yearB;
+    });
 
   return (
     <div>
@@ -50,8 +51,8 @@ function Page1() {
             book.name.toLowerCase().includes(filterName.toLowerCase())
           )
         ).map((book) => (
-          <div 
-            key={book.url} 
+          <div
+            key={book.url}
             className="border p-4 cursor-pointer"
             onClick={() => setSelectedBook(book)}
           >
@@ -62,10 +63,7 @@ function Page1() {
 
       {}
       {selectedBook && (
-        <BookModal 
-          book={selectedBook} 
-          onClose={() => setSelectedBook(null)}
-        />
+        <BookModal book={selectedBook} onClose={() => setSelectedBook(null)} />
       )}
     </div>
   );

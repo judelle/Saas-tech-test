@@ -1,10 +1,15 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { fetchUser } from './store/userSlice';
-import Header from './components/Header';
-import Page1 from './pages/page1';
-import Page2 from './pages/page2';
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  NavLink,
+} from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchUser } from "./store/userSlice";
+import Header from "./components/Header";
+import Page1 from "./pages/page1";
+import Page2 from "./pages/page2";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,17 +25,21 @@ function App() {
         <nav className="w-1/6">
           <ul className="flex flex-col space-y-4">
             <li>
-              <NavLink 
-                to="/" 
-                className={({ isActive }) => isActive ? "text-blue-500 font-bold" : ""}
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? "text-blue-500 font-bold" : ""
+                }
               >
                 Page 1
               </NavLink>
             </li>
             <li>
-              <NavLink 
-                to="/page2" 
-                className={({ isActive }) => isActive ? "text-blue-500 font-bold" : ""}
+              <NavLink
+                to="/page2"
+                className={({ isActive }) =>
+                  isActive ? "text-blue-500 font-bold" : ""
+                }
               >
                 Page 2
               </NavLink>

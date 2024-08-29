@@ -1,5 +1,5 @@
-import React from 'react';
-import CustomInput from '../components/custominput/CustomInput';
+import React from "react";
+import CustomInput from "../components/custominput/CustomInput";
 
 function Page2() {
   return (
