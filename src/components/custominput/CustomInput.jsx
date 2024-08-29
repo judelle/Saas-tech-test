@@ -19,9 +19,9 @@ function CustomInput({
   };
 
   const handleBlur = (e) => {
-    console.log("Blur"); // Это сработает при потере фокуса
+    console.log("Blur");
     if (onChange) {
-      onChange(e); // Вызываем onChange при потере фокуса
+      onChange(e);
     }
   };
 
@@ -36,7 +36,7 @@ function CustomInput({
         value={inputValue}
         disabled={disabled || isLoading}
         onInput={handleInput}
-        onBlur={handleBlur} // Добавляем обработчик blur
+        onBlur={handleBlur}
         placeholder=" "
       />
       <label>{placeholder}</label>
