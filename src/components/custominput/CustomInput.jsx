@@ -18,10 +18,10 @@ function CustomInput({
     if (onInput) onInput(e);
   };
 
-  const handleChange = (e) => {
-    console.log("blur"); // не совсем понимаю разницу в onChange и onInput полазил по форумам говорят что это в реакте одно и тоже
+  const handleBlur = (e) => {
+    console.log("Blur"); // Это сработает при потере фокуса
     if (onChange) {
-      onChange(e);
+      onChange(e); // Вызываем onChange при потере фокуса
     }
   };
 
@@ -36,7 +36,7 @@ function CustomInput({
         value={inputValue}
         disabled={disabled || isLoading}
         onInput={handleInput}
-        onChange={handleChange}
+        onBlur={handleBlur} // Добавляем обработчик blur
         placeholder=" "
       />
       <label>{placeholder}</label>

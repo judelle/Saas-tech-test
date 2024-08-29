@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import BookModal from "../components/BookModal";
+
 function Page1() {
   const [books, setBooks] = useState([]);
   const [filterName, setFilterName] = useState("");
   const [sortOrder, setSortOrder] = useState("desc");
   const [selectedBook, setSelectedBook] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [booksPerPage] = useState(5); // Количество книг на одной странице
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -24,6 +27,24 @@ function Page1() {
       const yearB = getYear(b.released);
       return sortOrder === "desc" ? yearB - yearA : yearA - yearB;
     });
+
+  // Фильтрация и сортировка
+  const filteredBooks = sortBooks(
+    books.filter((book) =>
+      book.name.toLowerCase().includes(filterName.toLowerCase())
+    )
+  );
+
+  // Пагинация
+  const indexOfLastBook = currentPage * booksPerPage;
+  const indexOfFirstBook = indexOfLastBook - booksPerPage;
+  const currentBooks = filteredBooks.slice(indexOfFirstBook, indexOfLastBook);
+
+  const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   return (
     <div>
@@ -46,11 +67,7 @@ function Page1() {
         </select>
       </div>
       <div className="grid grid-cols-1 gap-4">
-        {sortBooks(
-          books.filter((book) =>
-            book.name.toLowerCase().includes(filterName.toLowerCase())
-          )
-        ).map((book) => (
+        {currentBooks.map((book) => (
           <div
             key={book.url}
             className="border p-4 cursor-pointer"
@@ -61,7 +78,26 @@ function Page1() {
         ))}
       </div>
 
-      {}
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="border p-2 mr-2"
+        >
+          Назад
+        </button>
+        <span>
+          Страница {currentPage} из {totalPages}
+        </span>
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className="border p-2 ml-2"
+        >
+          Вперед
+        </button>
+      </div>
+
       {selectedBook && (
         <BookModal book={selectedBook} onClose={() => setSelectedBook(null)} />
       )}
